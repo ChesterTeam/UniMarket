@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Каталог товаров - UniMarket</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/catalog.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Хедер -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <h2><a href="../index.html">UniMarket</a></h2>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html" class="nav-link">Главная</a>
+                <a href="catalog.html" class="nav-link active">Каталог</a>
+                <a href="profile.html" class="nav-link profile-btn" style="display: none;">Профиль</a>
+                <a href="#" class="nav-link login-btn" id="loginBtn">Войти</a>
+            </div>
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Основной контент -->
+    <main class="main-content">
+        <div class="catalog-container">
+            <!-- Боковая панель с фильтрами -->
+            <aside class="filters-sidebar">
+                <div class="filters-header">
+                    <h3>Фильтры</h3>
+                    <button class="filters-clear" id="clearFilters">Сбросить</button>
+                </div>
+
+                <!-- Поиск в каталоге -->
+                <div class="filter-section">
+                    <div class="catalog-search">
+                        <input type="text" id="catalogSearchInput" placeholder="Поиск товаров..." class="catalog-search-input">
+                        <button type="button" class="catalog-search-btn" id="catalogSearchBtn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+                                <path d="m21 21-4.35-4.35" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Категории -->
+                <div class="filter-section">
+                    <h4>Категории</h4>
+                    <div class="filter-options">
+                        <label class="filter-option">
+                            <input type="radio" name="category" value="all" checked>
+                            <span class="checkmark"></span>
+                            Все категории
+                        </label>
+                        <label class="filter-option">
+                            <input type="radio" name="category" value="textbooks">
+                            <span class="checkmark"></span>
+                            Учебники
+                        </label>
+                        <label class="filter-option">
+                            <input type="radio" name="category" value="supplies">
+                            <span class="checkmark"></span>
+                            Канцтовары
+                        </label>
+                        <label class="filter-option">
+                            <input type="radio" name="category" value="rental">
+                            <span class="checkmark"></span>
+                            Аренда оборудования
+                        </label>
+                        <label class="filter-option">
+                            <input type="radio" name="category" value="services">
+                            <span class="checkmark"></span>
+                            Услуги
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Ценовой диапазон -->
+                <div class="filter-section">
+                    <h4>Цена</h4>
+                    <div class="price-range">
+                        <div class="price-inputs">
+                            <input type="number" id="priceMin" placeholder="От" class="price-input">
+                            <span>—</span>
+                            <input type="number" id="priceMax" placeholder="До" class="price-input">
+                        </div>
+                        <div class="price-slider">
+                            <input type="range" id="priceSlider" min="0" max="50000" value="25000" class="slider">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Состояние товара -->
+                <div class="filter-section">
+                    <h4>Состояние</h4>
+                    <div class="filter-options">
+                        <label class="filter-option">
+                            <input type="checkbox" name="condition" value="new">
+                            <span class="checkmark"></span>
+                            Новое
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="condition" value="excellent">
+                            <span class="checkmark"></span>
+                            Отличное
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="condition" value="good">
+                            <span class="checkmark"></span>
+                            Хорошее
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="condition" value="fair">
+                            <span class="checkmark"></span>
+                            Удовлетворительное
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Рейтинг продавца -->
+                <div class="filter-section">
+                    <h4>Рейтинг продавца</h4>
+                    <div class="rating-filter">
+                        <button class="rating-btn" data-rating="5">
+                            <span class="stars">★★★★★</span>
+                            <span class="rating-text">5 звёзд</span>
+                        </button>
+                        <button class="rating-btn" data-rating="4">
+                            <span class="stars">★★★★☆</span>
+                            <span class="rating-text">4+ звезды</span>
+                        </button>
+                        <button class="rating-btn" data-rating="3">
+                            <span class="stars">★★★☆☆</span>
+                            <span class="rating-text">3+ звезды</span>
+                        </button>
+                    </div>
+                </div>
+
+            </aside>
+
+            <!-- Основная область с товарами -->
+            <div class="catalog-main">
+                <!-- Шапка каталога -->
+                <div class="catalog-header">
+                    <div class="catalog-info">
+                        <h2 class="catalog-title">Каталог товаров</h2>
+                        <p class="results-count" id="resultsCount">Найдено: 0 товаров</p>
+                    </div>
+                    
+                    <div class="catalog-controls">
+                        <div class="sort-controls">
+                            <label for="sortSelect">Сортировка:</label>
+                            <select id="sortSelect" class="sort-select">
+                                <option value="date-desc">Сначала новые</option>
+                                <option value="date-asc">Сначала старые</option>
+                                <option value="price-asc">По возрастанию цены</option>
+                                <option value="price-desc">По убыванию цены</option>
+                                <option value="rating">По рейтингу продавца</option>
+                                <option value="popular">По популярности</option>
+                            </select>
+                        </div>
+
+                        <div class="view-controls">
+                            <button class="view-btn active" id="gridView" title="Сетка">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                    <rect x="3" y="3" width="7" height="7" stroke="currentColor" stroke-width="2"/>
+                                    <rect x="14" y="3" width="7" height="7" stroke="currentColor" stroke-width="2"/>
+                                    <rect x="14" y="14" width="7" height="7" stroke="currentColor" stroke-width="2"/>
+                                    <rect x="3" y="14" width="7" height="7" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            </button>
+                            <button class="view-btn" id="listView" title="Список">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                    <line x1="8" y1="6" x2="21" y2="6" stroke="currentColor" stroke-width="2"/>
+                                    <line x1="8" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="2"/>
+                                    <line x1="8" y1="18" x2="21" y2="18" stroke="currentColor" stroke-width="2"/>
+                                    <line x1="3" y1="6" x2="3.01" y2="6" stroke="currentColor" stroke-width="2"/>
+                                    <line x1="3" y1="12" x2="3.01" y2="12" stroke="currentColor" stroke-width="2"/>
+                                    <line x1="3" y1="18" x2="3.01" y2="18" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            </button>
+                        </div>
+                        
+                        <!-- Кнопки управления каталогом убраны -->
+                    </div>
+                </div>
+
+                <!-- Активные фильтры -->
+                <div class="active-filters" id="activeFilters">
+                    <!-- Динамически добавляемые теги активных фильтров -->
+                </div>
+
+                <!-- Сетка товаров -->
+                <div class="products-grid" id="productsGrid">
+                    <!-- Товары загружаются динамически через JavaScript -->
+                </div>
+
+                <!-- Пагинация -->
+                <div class="pagination" id="pagination">
+                    <!-- Кнопки пагинации -->
+                </div>
+
+                <!-- Состояние загрузки -->
+                <div class="loading-state" id="loadingState" style="display: none;">
+                    <div class="loading-spinner"></div>
+                    <p>Загрузка товаров...</p>
+                </div>
+
+                <!-- Пустое состояние -->
+                <div class="empty-state" id="emptyState" style="display: none;">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
+                        <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+                        <path d="m21 21-4.35-4.35" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <h3>Товары не найдены</h3>
+                    <p>Попробуйте изменить параметры поиска или фильтры</p>
+                    <button class="btn-primary" id="resetFiltersBtn">Сбросить фильтры</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Модальные окна будут создаваться динамически через JavaScript -->
+
+    <!-- Модальное окно товара -->
+    <div class="modal" id="productModal">
+        <div class="modal-content product-modal-content">
+            <div class="modal-header">
+                <h3 id="productModalTitle">Детали товара</h3>
+                <button class="modal-close" id="productModalClose">&times;</button>
+            </div>
+            <div class="modal-body" id="productModalBody">
+                <!-- Контент загружается динамически -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Модальное окно добавления объявления убрано -->
+
+    <!-- Подвал -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>UniMarket</h3>
+                    <p>Студенческий маркетплейс для покупки, продажи и обмена учебных материалов</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Категории</h4>
+                    <ul>
+                        <li><a href="catalog.html?category=textbooks">Учебники</a></li>
+                        <li><a href="catalog.html?category=supplies">Канцтовары</a></li>
+                        <li><a href="catalog.html?category=rental">Аренда</a></li>
+                        <li><a href="catalog.html?category=services">Услуги</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Помощь</h4>
+                    <ul>
+                        <li><a href="#">Поддержка</a></li>
+                        <li><a href="#">Частые вопросы</a></li>
+                        <li><a href="#">Правила</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 UniMarket. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Подключение скриптов -->
+    <script src="../js/database.js"></script>
+    <script src="js/api_adapter.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/search.js"></script>
+    <script src="../js/catalog.js"></script>
+    <script src="../js/filters.js"></script>
+</body>
+</html>
